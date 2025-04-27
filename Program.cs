@@ -6,14 +6,26 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAllDev", policy =>
+//     {
+//         policy
+//             .SetIsOriginAllowed(origin => true) // Allow any origin
+//             .AllowAnyHeader()
+//             .AllowAnyMethod();
+//     });
+// });
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllDev", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
         policy
-            .SetIsOriginAllowed(origin => true) // Allow any origin
+            .SetIsOriginAllowed(_ => true) // Be careful with this in production
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
