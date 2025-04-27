@@ -34,9 +34,15 @@ builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderItemService, OrderItemService>();
 
+// builder.WebHost.ConfigureKestrel(serverOptions =>
+// {
+//     serverOptions.Listen(System.Net.IPAddress.Any, 5213); // HTTP
+// });
+
+var port = int.Parse(Environment.GetEnvironmentVariable("PORT") ?? "5000");
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Listen(System.Net.IPAddress.Any, 5213); // HTTP
+    serverOptions.Listen(System.Net.IPAddress.Any, port);
 });
 
 var app = builder.Build();
