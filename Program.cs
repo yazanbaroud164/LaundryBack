@@ -58,7 +58,8 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 });
 
 var app = builder.Build();
-app.UseCors("AllowAllDev");
+// app.UseCors("AllowAllDev");
+app.UseCors("AllowAll");
 
 if (app.Environment.IsDevelopment())
 {
