@@ -32,6 +32,7 @@ public class OrderService : IOrderService
         .Include(o => o.Customer)
         .Include(o => o.OrderItems)
         .ThenInclude(oi => oi.Service)
+        .Include(o => o.OrderImages)
         .AsNoTracking().FirstOrDefaultAsync(o => o.Id == id);
 
     public async Task<Order> CreateAsync(Order order)
@@ -60,8 +61,26 @@ public class OrderService : IOrderService
 
     public async Task<bool> UpdateAsync(long id, Order order)
     {
-        if (id != order.Id) return false;
-        _context.Entry(order).State = EntityState.Modified;
+        // if (id != order.Id) return false;
+        // _context.Entry(order).State = EntityState.Modified;
+        // await _context.SaveChangesAsync();
+        // return true;
+        var existingOrder = await _context.Orders
+        .Include(o => o.OrderItems)
+        .Include(o => o.OrderImages)
+        .FirstOrDefaultAsync(o => o.Id == id);
+
+        if (existingOrder == null) return false;
+
+        // Update scalar properties
+        existingOrder.Status = order.Status;
+        existingOrder.TotalAmount = order.TotalAmount;
+        existingOrder.OrderDate = order.OrderDate;
+        existingOrder.CustomerId = order.CustomerId;
+        existingOrder.OrderItems = order.OrderItems;
+        // Optionally update OrderItems and OrderImages...
+        // (either by clearing and adding new, or comparing/updating individually)
+
         await _context.SaveChangesAsync();
         return true;
     }

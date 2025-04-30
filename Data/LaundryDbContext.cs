@@ -13,6 +13,7 @@ public class LaundryDbContext: DbContext
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<Service> Services => Set<Service>();
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<OrderImage> OrderImage => Set<OrderImage>();
 }
 
 

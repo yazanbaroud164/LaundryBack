@@ -45,6 +45,8 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderItemService, OrderItemService>();
+builder.Services.AddScoped<IOrderImageService, OrderImageService>();
+
 
 // builder.WebHost.ConfigureKestrel(serverOptions =>
 // {

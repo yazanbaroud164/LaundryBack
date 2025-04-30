@@ -156,3 +156,10 @@ C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\obj\Debug\net
 C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\publish\web.config
+C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\publish\appsettings.Development.json
+C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\publish\appsettings.json
+C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\publish\LaundryApi.deps.json
+C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\publish\LaundryApi.runtimeconfig.json
+C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\bin\Debug\net9.0\publish\LaundryApi.staticwebassets.endpoints.json
+C:\Users\razba\OneDrive\שולחן העבודה\laundry\LaundryApi\obj\Debug\net9.0\LaundryApi.sourcelink.json

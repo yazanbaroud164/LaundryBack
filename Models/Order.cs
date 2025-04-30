@@ -12,4 +12,6 @@ public class Order
 
     public Customer? Customer { get; set; }
     public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public ICollection<OrderImage?> OrderImages { get; set; } = new List<OrderImage?>();
+
 }

@@ -9,10 +9,13 @@ namespace LaundryApi.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
+        private readonly IOrderImageService _orderImageService;
 
-        public OrderController(IOrderService orderService)
+
+        public OrderController(IOrderService orderService, IOrderImageService orderImageService)
         {
             _orderService = orderService;
+            _orderImageService = orderImageService;
         }
 
         [HttpGet("GetAllOrders")]
@@ -49,5 +52,43 @@ namespace LaundryApi.Controllers
             if (!success) return NotFound();
             return NoContent();
         }
+
+        [HttpPost("{orderId}/images")]
+        public async Task<IActionResult> UploadImages(long orderId, [FromForm] List<IFormFile> files)
+        {
+            try
+            {
+                await _orderImageService.UploadImagesAsync(orderId, files);
+                return Ok(new { Message = "Images uploaded successfully." });
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound("Order not found.");
+            }
+        }
+
+        [HttpGet("{orderId}/images")]
+        public async Task<IActionResult> GetImages(long orderId)
+        {
+            var images = await _orderImageService.GetImagesByOrderIdAsync(orderId);
+            var result = images.Select(img => new
+            {
+                img.Id,
+                img.FileName,
+                img.ContentType,
+                Base64 = Convert.ToBase64String(img.Data)
+            });
+
+            return Ok(result);
+        }
+
+        [HttpDelete("images/{imageId}")]
+        public async Task<IActionResult> DeleteImage(long imageId)
+        {
+            await _orderImageService.DeleteImageAsync(imageId);
+            return NoContent();
+        }
+
+
     }
 }
