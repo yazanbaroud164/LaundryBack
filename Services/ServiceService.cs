@@ -16,7 +16,7 @@ public class ServiceService : IServiceService
     }
 
     public async Task<IEnumerable<Service>> GetAllAsync() =>
-        await _context.Services.ToListAsync();
+        await _context.Services.AsNoTracking().ToListAsync();
 
     public async Task<Service?> GetByIdAsync(long id) =>
         await _context.Services.FindAsync(id);

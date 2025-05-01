@@ -16,7 +16,7 @@ public class ProductService : IProductService
     }
 
     public async Task<IEnumerable<Product>> GetAllAsync() =>
-        await _context.Products.ToListAsync();
+        await _context.Products.AsNoTracking().ToListAsync();
 
     public async Task<Product?> GetByIdAsync(long id) =>
         await _context.Products.FindAsync(id);

@@ -16,7 +16,7 @@ public class CustomerService : ICustomerService
     }
 
     public async Task<IEnumerable<Customer>> GetAllAsync() =>
-        await _context.Customers.ToListAsync();
+        await _context.Customers.AsNoTracking().ToListAsync();
 
     public async Task<Customer?> GetByIdAsync(long id) =>
         await _context.Customers.FindAsync(id);

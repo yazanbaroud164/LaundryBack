@@ -9,5 +9,6 @@ public interface IOrderService
     Task<Order?> GetByIdAsync(long id);
     Task<Order> CreateAsync(Order order);
     Task<bool> UpdateAsync(long id, Order order);
+    Task<bool> UpdateStatusAsync(long id, string status);
     Task<bool> DeleteAsync(long id);
 }

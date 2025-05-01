@@ -16,7 +16,7 @@ public class OrderItemService : IOrderItemService
     }
 
     public async Task<IEnumerable<OrderItem>> GetAllAsync() =>
-        await _context.OrderItems.ToListAsync();
+        await _context.OrderItems.AsNoTracking().ToListAsync();
 
     public async Task<OrderItem?> GetByIdAsync(long id) =>
         await _context.OrderItems.FindAsync(id);

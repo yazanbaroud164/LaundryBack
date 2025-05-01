@@ -25,6 +25,7 @@ public class OrderService : IOrderService
         //     Status = o.Status,
         //     Customer = o.Customer
         // })
+        .AsNoTracking()
         .ToListAsync();
 
     public async Task<Order?> GetByIdAsync(long id) =>
@@ -85,11 +86,29 @@ public class OrderService : IOrderService
         return true;
     }
 
+    public async Task<bool> UpdateStatusAsync(long id, string status)
+    {
+        var existingOrder = await _context.Orders
+        .FirstOrDefaultAsync(o => o.Id == id);
+
+        if (existingOrder == null) return false;
+
+        existingOrder.Status = status;
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
     public async Task<bool> DeleteAsync(long id)
     {
-        var order = await _context.Orders.FindAsync(id);
+        var order = await _context.Orders
+            .Include(o => o.OrderItems) // Load related OrderItems
+            .FirstOrDefaultAsync(o => o.Id == id);
+
         if (order == null) return false;
-        _context.Orders.Remove(order);
+
+        _context.OrderItems.RemoveRange(order.OrderItems); // Remove children first
+        _context.Orders.Remove(order);                     // Then remove parent
+
         await _context.SaveChangesAsync();
         return true;
     }

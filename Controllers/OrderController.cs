@@ -45,6 +45,20 @@ namespace LaundryApi.Controllers
             return NoContent();
         }
 
+
+
+        public class UpdateStatusDto
+        {
+            public string Status { get; set; } = string.Empty;
+        }
+        [HttpPut("UpdateStatusOrder/{id}")]
+        public async Task<IActionResult> UpdateStatus(long id, [FromBody] UpdateStatusDto dto)
+        {
+            var success = await _orderService.UpdateStatusAsync(id, dto.Status);
+            if (!success) return BadRequest();
+            return NoContent();
+        }
+
         [HttpDelete("DeleteOrder/{id}")]
         public async Task<IActionResult> Delete(long id)
         {
