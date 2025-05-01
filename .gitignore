@@ -1,0 +1,46 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+
+# SQLite database temporary files
+*.db-shm
+*.db-wal
+
+# Include the main DB file only if needed
+# !laundry.db   ← הסר את הסולמית אם אתה רוצה **לשמור** את laundry.db בגיט
+
+# Visual Studio Code settings
+.vscode/
+
+# Others
+*.tmp
+*.bak
+*.ncb
+*.sdf
+*.opensdf
+*.sqlite
+*.sqlite3
+
+# Dotnet generated files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Rider files
+.idea/
+*.sln.iml
